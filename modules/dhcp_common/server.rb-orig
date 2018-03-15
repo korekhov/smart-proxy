@@ -72,14 +72,6 @@ module Proxy::DHCP
       []
     end
 
-    def global_search(something)
-      service.global_search_reservation_by_mac(something) ||
-        service.global_search_reservation_by_ip(something) ||
-        service.global_search_lease_by_mac(something) ||
-        service.global_search_lease_by_ip(something) ||
-        service.find_host_by_hostname(something)
-    end
-
     def del_records_by_ip(subnet_address, ip)
       records = find_records_by_ip(subnet_address, ip)
       records.each { |record| del_record(record) }
